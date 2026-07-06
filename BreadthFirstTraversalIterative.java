@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 public class BreadthFirstTraversalIterative {
-    public static ArrayList<ArrayList<Integer>> levelOrder(Node root){
+    public static ArrayList<ArrayList<Integer>> levelOrder(OurNode root){
         if(root == null){
             return new ArrayList<>();
         }
         // create an empty queue for level order traversal
-        Queue<Node> que = new LinkedList<>();
+        Queue<OurNode> que = new LinkedList<>();
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
 
         //Enqueue root
@@ -18,7 +18,7 @@ public class BreadthFirstTraversalIterative {
             res.add(new ArrayList<>());
             for(int i=0;i < len; i++){
                 // Add front of queue and remove it from queue
-                OurNode node = (OurNode) que.poll();
+                OurNode node = que.poll();
                 res.get(currLevel).add(node.data);
 
                 // Enqueue left child
@@ -64,11 +64,10 @@ public class BreadthFirstTraversalIterative {
     }
 }
 
-class OurNode extends Node{
+class OurNode {
     int data;
     OurNode left,right;
     public OurNode(int value){
-        super(value);
         data = value;
         left = right = null;
     }
